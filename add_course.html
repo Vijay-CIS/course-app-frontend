@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <title>add_course</title>
+</head>
+
+<body>
+    <h2>Add Course</h2>
+
+    <form onsubmit="addCourse()">
+        <label for="fname">code:</label><br>
+        <input type="text" id="code" name="fname" placeholder="Enter Code"><br>
+        <label for="lname">Title:</label><br>
+        <input type="text" id="title" name="lname" placeholder="Enter Title"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+
+        function addCourse() {
+            event.preventDefault();
+            let url = "https://courseapp1.herokuapp.com/api/courses";
+            let code = document.querySelector("#code").value;
+            let title = document.querySelector("#title").value;
+            let data = {
+                code: code,
+                title: title
+            };
+            axios.post(url, data)
+                .then((response) => {
+                    console.log(response);
+                }, (error) => {
+                    console.log(error);
+                });
+        }
+    </script>
+</body>
+
+</html>
